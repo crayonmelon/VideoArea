@@ -1,0 +1,417 @@
+[gd_scene load_steps=30 format=3 uid="uid://bfxw35m4da33f"]
+
+[ext_resource type="AudioStream" uid="uid://dv7452oa3ty18" path="res://Audio/intro.wav" id="1_bqw7t"]
+[ext_resource type="PackedScene" uid="uid://om8rafl6m7xy" path="res://Models/Level/garden.tscn" id="1_p877n"]
+[ext_resource type="PackedScene" uid="uid://djyn0b7x0x0ir" path="res://Models/head.tscn" id="2_kwksw"]
+[ext_resource type="AudioStream" uid="uid://br417tx3s3c1c" path="res://Audio/color.wav" id="4_nx24f"]
+[ext_resource type="AudioStream" uid="uid://bytjpsvl3l0bc" path="res://Audio/bgSound.mp3" id="5_kh8w4"]
+[ext_resource type="PackedScene" uid="uid://tqsdtg00kue7" path="res://Models/Table/table.tscn" id="5_ujnro"]
+[ext_resource type="Material" uid="uid://dpxmsqlg6yo2n" path="res://skybox.tres" id="6_os5t2"]
+[ext_resource type="Shader" path="res://Models/Level/psx.gdshader" id="7_ar6ve"]
+[ext_resource type="Script" path="res://CameraTween.gd" id="7_vr3hp"]
+[ext_resource type="Texture2D" uid="uid://bsqiysepqwoct" path="res://sprite/panarama360.png" id="8_cqrcr"]
+[ext_resource type="Texture2D" uid="uid://djqlvp3t6uij2" path="res://icon.svg" id="12_u8i7y"]
+
+[sub_resource type="Animation" id="Animation_i4fmg"]
+resource_name = "Full_Anim"
+length = 1200.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/CameraSpin")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("speen", "Zoom"),
+"times": PackedFloat32Array(0, 3.6)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JitterIntro")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("JitterIntro"),
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fullanim/MainAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_bqw7t")
+}],
+"times": PackedFloat32Array(-2.6)
+}
+tracks/2/use_blend = true
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Presentation/PresentationShow")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("show"),
+"times": PackedFloat32Array(5.3)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Presentation:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_u8i7y")]
+}
+
+[sub_resource type="Animation" id="Animation_q74n5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Presentation:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_u8i7y")]
+}
+
+[sub_resource type="Animation" id="Animation_5eaor"]
+resource_name = "video_anim"
+length = 1200.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fullanim/MainAudio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_nx24f")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_asrrs"]
+_data = {
+"Full_Anim": SubResource("Animation_i4fmg"),
+"RESET": SubResource("Animation_q74n5"),
+"video_anim": SubResource("Animation_5eaor")
+}
+
+[sub_resource type="Animation" id="Animation_khcpr"]
+resource_name = "JitterIntro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("garden:surface_material_override/0:shader_parameter/jitter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(4, 652.576),
+"update": 0,
+"values": [1.0, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head:surface_material_override/0:shader_parameter/jitter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [1.0, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("table:mesh:surface_0/material:shader_parameter/jitter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_2jypa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("garden:surface_material_override/0:shader_parameter/jitter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head:surface_material_override/0:shader_parameter/jitter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("table:mesh:surface_0/material:shader_parameter/jitter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgfxf"]
+_data = {
+"JitterIntro": SubResource("Animation_khcpr"),
+"RESET": SubResource("Animation_2jypa")
+}
+
+[sub_resource type="Sky" id="Sky_d2hmr"]
+sky_material = ExtResource("6_os5t2")
+
+[sub_resource type="Environment" id="Environment_vmolt"]
+sky = SubResource("Sky_d2hmr")
+ambient_light_source = 3
+ambient_light_color = Color(1, 0.8, 0.627451, 1)
+
+[sub_resource type="Animation" id="Animation_btewi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [90.0]
+}
+
+[sub_resource type="Animation" id="Animation_sa36a"]
+resource_name = "Zoom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.392292, 1),
+"update": 0,
+"values": [90.0, 32.1]
+}
+
+[sub_resource type="Animation" id="Animation_3k5a8"]
+resource_name = "speen"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.5),
+"transitions": PackedFloat32Array(3, 0.123744, 0.287174),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0), Vector3(0, 12.5664, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxnaq"]
+_data = {
+"RESET": SubResource("Animation_btewi"),
+"Zoom": SubResource("Animation_sa36a"),
+"speen": SubResource("Animation_3k5a8")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rpig"]
+render_priority = 0
+shader = ExtResource("7_ar6ve")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = false
+shader_parameter/jitter_depth_independent = false
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("8_cqrcr")
+
+[sub_resource type="SphereMesh" id="SphereMesh_0lptl"]
+material = SubResource("ShaderMaterial_2rpig")
+flip_faces = true
+
+[sub_resource type="Animation" id="Animation_2h71k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.481966, 0.116332, 1.80218)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i8l5f"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.482, -2, 1.802), Vector3(0.481966, 0.116332, 1.80218)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jouko"]
+_data = {
+"RESET": SubResource("Animation_2h71k"),
+"show": SubResource("Animation_i8l5f")
+}
+
+[node name="mainScene" type="Node3D"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.794552, 0.607196, 0, -0.607196, -0.794552, 0.751662, 1.82677, -5.51549)
+visible = false
+spot_range = 31.6877
+
+[node name="Fullanim" type="AnimationPlayer" parent="."]
+autoplay = "Full_Anim"
+libraries = {
+"": SubResource("AnimationLibrary_asrrs")
+}
+
+[node name="MainAudio" type="AudioStreamPlayer" parent="Fullanim"]
+bus = &"MainDialogue"
+
+[node name="bgAudio" type="AudioStreamPlayer" parent="Fullanim"]
+stream = ExtResource("5_kh8w4")
+volume_db = -10.0
+bus = &"bgAudio"
+
+[node name="JitterIntro" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mgfxf")
+}
+
+[node name="garden" parent="." instance=ExtResource("1_p877n")]
+transform = Transform3D(-0.961813, 0.0573385, 0.267634, 0.178268, -0.610742, 0.771502, 0.207692, 0.78975, 0.577198, -0.356175, 0.0975017, -0.365055)
+surface_material_override/0 = null
+
+[node name="table" parent="." instance=ExtResource("5_ujnro")]
+transform = Transform3D(0.480792, 0, 0.0945456, 0, 0.7, 0, -0.0945456, 0, 0.480792, -0.542371, -0.330488, 1.20341)
+
+[node name="head" parent="." instance=ExtResource("2_kwksw")]
+transform = Transform3D(-0.00374011, -0.00294932, 0.00879278, 0.00217086, 0.00893907, 0.00392179, -0.00901659, 0.00337558, -0.00270306, -1.01659, -0.232339, 1.93841)
+surface_material_override/0 = null
+
+[node name="CameraPos" type="Node3D" parent="."]
+transform = Transform3D(0.0983112, 0.002988, -0.018055, -0.000518752, 0.0990734, 0.0135715, 0.0182932, -0.0132486, 0.0974158, -0.416, 0.417, -1.272)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-1, -1.17134e-08, 8.66345e-08, 0, 0.990983, 0.133986, -8.74228e-08, 0.133986, -0.990983, -3.49691e-07, 0.846413, -4.51275)
+keep_aspect = 0
+environment = SubResource("Environment_vmolt")
+fov = 90.0
+script = ExtResource("7_vr3hp")
+
+[node name="CameraSpin" type="AnimationPlayer" parent="CameraPivot"]
+libraries = {
+"": SubResource("AnimationLibrary_lxnaq")
+}
+
+[node name="Skybox" type="MeshInstance3D" parent="."]
+transform = Transform3D(100.749, 0, 0, 0, 100.749, 0, 0, 0, 100.749, 0, 0, 0)
+mesh = SubResource("SphereMesh_0lptl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Presentation" type="Sprite3D" parent="."]
+transform = Transform3D(1.07329, 0, 0.214309, 0, 1.13633, 0, -0.373213, 0, 0.616313, 0.481966, 0.116332, 1.80218)
+visible = false
+texture = ExtResource("12_u8i7y")
+
+[node name="PresentationShow" type="AnimationPlayer" parent="Presentation"]
+libraries = {
+"": SubResource("AnimationLibrary_jouko")
+}

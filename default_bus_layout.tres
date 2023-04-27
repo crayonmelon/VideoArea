@@ -1,0 +1,35 @@
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://c0jh25jyxqoag"]
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_myyxp"]
+resource_name = "SpectrumAnalyzer"
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_0jnmv"]
+resource_name = "SpectrumAnalyzer"
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_0k68j"]
+resource_name = "SpectrumAnalyzer"
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_obpgj"]
+resource_name = "Filter"
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_myyxp")
+bus/0/effect/0/enabled = true
+bus/1/name = &"MainDialogue"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -12.9785
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_0jnmv")
+bus/1/effect/0/enabled = true
+bus/2/name = &"bgAudio"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = -7.63485
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_0k68j")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectFilter_obpgj")
+bus/2/effect/1/enabled = false
